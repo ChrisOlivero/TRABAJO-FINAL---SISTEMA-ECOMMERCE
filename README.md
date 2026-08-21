@@ -288,8 +288,8 @@ Base de datos
 ## 👥 Equipo
 
 **Integrantes:**
-    * Marcos Rios
-    * Christian Emmanuel Olivero
+* Marcos Rios.
+* Christian Emmannuel Olivero.
 
 ### Tutor
 
