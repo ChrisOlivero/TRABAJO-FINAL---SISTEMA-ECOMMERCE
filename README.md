@@ -287,9 +287,9 @@ Base de datos
 
 ## 👥 Equipo
 
-Integrantes:
-Marcos Rios
-Christian Emmanuel Olivero
+**Integrantes:**
+    * Marcos Rios
+    * Christian Emmanuel Olivero
 
 ### Tutor
 
