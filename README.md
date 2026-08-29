@@ -1,87 +1,350 @@
-# TRABAJO-FINAL---SISTEMA-ECOMMERCE
-
-
 # 🛒 Sistema de E-commerce
 
-Sistema web de comercio electrónico desarrollado como proyecto para el **Trabajo Final Integrador de la Tecnicatura Universitaria en Programación**.
+Sistema web de comercio electrónico desarrollado en el marco del **Trabajo Final Integrador de la Tecnicatura Universitaria en Programación**.
 
-El proyecto tiene como objetivo desarrollar una plataforma web que permita gestionar un catálogo de productos y las operaciones asociadas al proceso de compra, contemplando diferentes perfiles de usuario y un módulo de administración.
+El proyecto propone una solución para un emprendimiento de pequeña escala dedicado a la comercialización de **celulares nuevos, celulares usados y accesorios tecnológicos**, actualmente gestionado principalmente mediante redes sociales y WhatsApp.
 
-La solución será diseñada de forma modular y adaptable, permitiendo su utilización en diferentes tipos de comercios y catálogos.
+El objetivo es centralizar y profesionalizar el proceso de comercialización, permitiendo gestionar el catálogo, stock, clientes y pedidos mediante una plataforma web propia.
+
+---
+
+## 📌 Contexto y problemática
+
+El comercio planteado corresponde a un emprendimiento en etapa inicial, gestionado por una sola persona y que no necesariamente cuenta con un local comercial.
+
+Actualmente, la comercialización se realiza principalmente mediante:
+
+* WhatsApp.
+* Redes sociales.
+* Publicaciones y estados con fotografías de los productos.
+* Coordinación directa con los clientes para concretar las ventas.
+* Retiro de productos en el domicilio del vendedor o envío a domicilio.
+
+Este modelo permite comenzar a comercializar sin una infraestructura importante, pero a medida que aumenta la cantidad de productos, consultas y ventas pueden aparecer dificultades relacionadas con la organización y el control de la información.
+
+Entre las principales problemáticas identificadas se encuentran:
+
+* Catálogo distribuido entre diferentes publicaciones y canales.
+* Consultas manuales sobre disponibilidad y precios.
+* Control manual del stock.
+* Registro y seguimiento de pedidos mediante diferentes medios.
+* Falta de un catálogo centralizado.
+* Dificultad para consultar de manera organizada el estado de los pedidos.
+* Dependencia de diferentes herramientas para administrar el proceso de venta.
+* Mayor posibilidad de errores a medida que aumenta el volumen de operaciones.
 
 ---
 
 ## 🎯 Objetivo
 
-Desarrollar un sistema de e-commerce full stack que integre los conocimientos adquiridos durante la carrera, aplicando principios de programación orientada a objetos, desarrollo web, persistencia de datos, diseño de APIs, seguridad y buenas prácticas de desarrollo de software.
+Desarrollar una plataforma web propia que permita centralizar y organizar el proceso de comercialización, facilitando tanto la experiencia de compra del cliente como la gestión interna del emprendimiento.
 
-El sistema buscará proporcionar una solución mantenible, escalable y adaptable a diferentes contextos comerciales.
+El sistema estará orientado inicialmente a un comercio de pequeña escala y será desarrollado de manera modular, priorizando una solución mantenible y adaptable a las necesidades concretas del negocio.
 
 ---
 
-## 📌 Alcance inicial
+## 👥 Actores
 
-El sistema contempla inicialmente dos perfiles principales:
+### Cliente
 
-### 👤 Cliente
+El cliente podrá:
 
-* Registro de usuario.
+* Registrarse e iniciar sesión.
+* Consultar el catálogo.
+* Buscar y filtrar productos.
+* Consultar el detalle de los productos.
+* Agregar productos al carrito.
+* Modificar cantidades.
+* Realizar el checkout.
+* Seleccionar retiro o envío.
+* Realizar el pago online.
+* Generar pedidos.
+* Consultar sus pedidos y su estado.
+
+### Administrador
+
+El administrador podrá:
+
+* Iniciar sesión.
+* Gestionar productos.
+* Gestionar categorías.
+* Gestionar stock.
+* Consultar pedidos.
+* Actualizar estados de pedidos.
+* Cancelar pedidos.
+* Realizar ajustes de stock cuando sea necesario.
+
+---
+
+## 🛍️ Catálogo
+
+El sistema estará orientado inicialmente a la comercialización de:
+
+* Celulares nuevos.
+* Celulares usados.
+* Accesorios tecnológicos.
+
+Los productos podrán contar con información específica según corresponda, como:
+
+* Marca.
+* Modelo.
+* Capacidad de almacenamiento.
+* Memoria RAM.
+* Color.
+* Condición del producto.
+* Precio.
+* Stock.
+
+La estructura definitiva del catálogo y sus posibles variantes será definida durante la etapa de diseño.
+
+---
+
+## 🛒 Proceso de compra
+
+El flujo principal propuesto será:
+
+```text
+Catálogo
+   ↓
+Detalle del producto
+   ↓
+Carrito
+   ↓
+Datos del cliente
+   ↓
+Retiro o envío
+   ↓
+Pago online
+   ↓
+Confirmación
+   ↓
+Generación del pedido
+```
+
+El checkout contemplará:
+
+* Carrito de compra.
+* Datos del cliente.
+* Selección entre retiro y envío a domicilio.
+* Información necesaria para el envío.
+* Pago online.
+* Confirmación de la operación.
+* Generación del pedido.
+
+Inicialmente quedan fuera del alcance las integraciones con sistemas externos de facturación electrónica y logística, salvo que posteriormente se determine que resultan necesarias.
+
+---
+
+## 📦 Gestión de stock
+
+El stock se gestionará inicialmente mediante una cantidad disponible asociada a cada producto o variante.
+
+Agregar un producto al carrito **no reservará stock**.
+
+Antes de finalizar una compra, el backend deberá verificar nuevamente la disponibilidad.
+
+El flujo será:
+
+```text
+Agregar al carrito
+        ↓
+Checkout
+        ↓
+Verificación de stock
+        ↓
+Procesamiento del pago
+        ↓
+¿Pago aprobado?
+   ├── No → No se modifica el stock
+   │
+   └── Sí
+        ↓
+   Descuento de stock
+        ↓
+   Confirmación del pedido
+```
+
+La verificación del stock deberá realizarse en el backend para evitar inconsistencias ante operaciones simultáneas.
+
+No se contempla inicialmente un sistema completo de movimientos de inventario. Sin embargo, el administrador podrá realizar ajustes de stock cuando sea necesario, por ejemplo ante devoluciones, reposiciones o correcciones.
+
+---
+
+## 📋 Pedidos
+
+Los pedidos tendrán inicialmente los siguientes estados:
+
+```text
+CREADO
+   ↓
+CONFIRMADO
+   ↓
+PREPARANDO
+   ↓
+LISTO
+   ↓
+ENTREGADO
+```
+
+El administrador será responsable de gestionar la evolución del estado del pedido.
+
+También se permitirá la cancelación de pedidos por parte del administrador.
+
+Una cancelación podrá realizarse según las reglas definidas para cada estado y, cuando corresponda, deberá restituir el stock descontado.
+
+---
+
+## 💰 Precios
+
+El precio aplicado durante una compra deberá conservarse dentro del pedido.
+
+Por lo tanto, una modificación posterior del precio de un producto no deberá alterar el importe histórico de pedidos ya realizados.
+
+Ejemplo:
+
+```text
+Precio al momento de la compra:
+Celular X → $500.000
+
+Pedido registrado:
+Celular X → $500.000
+```
+
+Si posteriormente el precio cambia:
+
+```text
+Celular X → $550.000
+```
+
+el pedido anterior continuará mostrando el precio de **$500.000**.
+
+---
+
+## 🔐 Seguridad
+
+El sistema contará con dos roles:
+
+* `CLIENTE`
+* `ADMIN`
+
+Se propone implementar autenticación mediante **JWT** y autorización basada en roles.
+
+La seguridad será validada mediante casos concretos, entre ellos:
+
+* Un cliente no puede crear ni modificar productos.
+* Un cliente no puede modificar categorías.
+* Un cliente no puede modificar el stock.
+* Un cliente no puede modificar estados administrativos.
+* Un usuario no puede consultar pedidos pertenecientes a otro usuario modificando manualmente el identificador de la solicitud.
+* Determinadas operaciones sobre pedidos estarán disponibles únicamente para administradores.
+* Los datos recibidos por la API serán validados en backend.
+
+---
+
+## ⭐ Diferencial
+
+El proyecto no busca competir directamente con plataformas comerciales de e-commerce existentes.
+
+La propuesta consiste en desarrollar una solución propia orientada a las necesidades de un emprendimiento pequeño que actualmente gestiona sus ventas mediante redes sociales y mensajería.
+
+El desarrollo de una solución propia permitirá:
+
+* Centralizar catálogo, stock y pedidos.
+* Adaptar el funcionamiento del sistema a las necesidades específicas del comercio.
+* Tener control sobre la evolución del producto.
+* Evitar depender de las limitaciones de una plataforma comercial determinada.
+* Incorporar nuevas funcionalidades según las necesidades que surjan.
+* Mantener una solución dimensionada al contexto del emprendimiento.
+
+El diferencial se plantea principalmente desde la **adaptabilidad y control sobre la solución**, en lugar de intentar competir con plataformas generalistas.
+
+---
+
+## 🎯 MVP
+
+### P0 — Funcionalidades obligatorias
+
+#### Cliente
+
+* Registro.
 * Inicio de sesión.
-* Consulta del catálogo de productos.
-* Consulta por categorías.
-* Búsqueda y filtrado de productos.
-* Visualización del detalle de un producto.
-* Gestión del carrito de compras.
-* Modificación de cantidades.
-* Proceso de checkout.
-* Generación de pedidos.
-* Consulta del historial de pedidos.
+* Catálogo.
+* Categorías.
+* Búsqueda y filtrado básico.
+* Detalle de producto.
+* Carrito.
+* Datos de compra.
+* Selección de retiro o envío.
+* Pago online.
+* Generación del pedido.
+* Consulta de pedidos.
+* Consulta del estado del pedido.
 
-### 🛠️ Administrador
+#### Administrador
 
 * Inicio de sesión.
-* Acceso al panel administrativo.
 * Gestión de productos.
 * Gestión de categorías.
 * Gestión de stock.
 * Consulta de pedidos.
-* Actualización del estado de los pedidos.
+* Actualización de estados.
+* Cancelación de pedidos.
 
-> El alcance presentado corresponde a la propuesta inicial del proyecto. Los módulos y funcionalidades definitivos serán establecidos y validados durante el desarrollo junto con el docente tutor.
+### P1 — Funcionalidades deseables
+
+Las funcionalidades P1 serán evaluadas una vez completado el núcleo del sistema.
+
+Entre las posibles extensiones se consideran:
+
+* Filtros avanzados.
+* Comparación de productos.
+* Estadísticas administrativas.
+* Mejoras en la gestión de inventario.
+* Nuevas funcionalidades para la experiencia del cliente.
+
+### Fuera de alcance inicial
+
+* Facturación electrónica.
+* Integraciones externas de logística.
+* Aplicación móvil nativa.
+* Marketplace.
+* Gestión de múltiples sucursales.
+* Sistema avanzado de movimientos de inventario.
+* Funcionalidades orientadas a grandes volúmenes de usuarios.
 
 ---
 
 ## 🏗️ Arquitectura propuesta
 
-Se propone una arquitectura de aplicación web full stack, separando las responsabilidades entre frontend, backend y base de datos.
+El sistema seguirá una arquitectura full stack separando frontend, backend y base de datos.
 
 ```text
-┌──────────────────────────────┐
-│           Frontend           │
-│       React + TypeScript     │
-└──────────────┬───────────────┘
+┌─────────────────────────────┐
+│          Frontend           │
+│       React + TypeScript    │
+└──────────────┬──────────────┘
                │
                │ HTTP / JSON
                ▼
-┌──────────────────────────────┐
-│          Backend             │
-│         Spring Boot          │
-├──────────────────────────────┤
-│ Controllers                  │
-│ Services                     │
-│ Repositories                 │
-│ DTOs                         │
-│ Validation                   │
-│ Security                     │
-└──────────────┬───────────────┘
+┌─────────────────────────────┐
+│          Backend            │
+│         Spring Boot         │
+├─────────────────────────────┤
+│ Controllers                 │
+│ Services                    │
+│ Repositories                │
+│ DTOs                        │
+│ Validation                  │
+│ Security                    │
+└──────────────┬──────────────┘
                │
                ▼
-┌──────────────────────────────┐
-│       Base de datos SQL      │
-└──────────────────────────────┘
+┌─────────────────────────────┐
+│       Base de datos SQL     │
+└─────────────────────────────┘
 ```
 
-La organización del backend seguirá, en términos generales, una separación de responsabilidades:
+La organización lógica del backend seguirá:
 
 ```text
 Controller
@@ -93,7 +356,7 @@ Repository
 Database
 ```
 
-Esta estructura busca favorecer la mantenibilidad, la separación de responsabilidades y el bajo acoplamiento entre los diferentes componentes del sistema.
+Esta separación busca favorecer la mantenibilidad, la cohesión y la separación de responsabilidades.
 
 ---
 
@@ -101,149 +364,118 @@ Esta estructura busca favorecer la mantenibilidad, la separación de responsabil
 
 ### Backend
 
-* **Java**
-* **Spring Boot**
-* **Spring Web**
-* **Spring Data JPA**
-* **Hibernate**
-* **Spring Security**
-* **JWT**
-* **Bean Validation**
-* **DTOs**
-* **Manejo global de excepciones**
+* Java
+* Spring Boot
+* Spring Web
+* Spring Data JPA
+* Hibernate
+* Spring Security
+* JWT
+* Bean Validation
+* DTOs
+* Manejo global de excepciones
 
 ### Frontend
 
-* **React**
-* **TypeScript**
-* **HTML**
-* **CSS**
-* **Vite**
-* **React Router**
-* **TanStack Query**
-* **Zustand**
+* TypeScript
+* Vite
+* HTML
+* CSS
 
 ### Base de datos
 
 * Base de datos relacional SQL.
 * JPA / Hibernate.
-* Modelo entidad-relación.
-* Mecanismo de migraciones o scripts para la gestión de la estructura de datos.
 
-La tecnología específica de base de datos será definida durante la etapa de diseño, considerando los requisitos del sistema, facilidad de desarrollo, despliegue y mantenimiento.
+La tecnología específica de base de datos será definida durante la etapa de diseño.
 
 ### Herramientas
 
-* **Git**
-* **GitHub**
-* **Postman** o herramienta equivalente para pruebas de API.
-* Herramientas de desarrollo y gestión del proyecto.
+* Git
+* GitHub
+* Postman o herramienta equivalente.
+* Plataforma de despliegue online.
 
 ---
 
-## 🔐 Seguridad
+## 📐 Dimensión inicial
 
-El sistema contemplará mecanismos de autenticación y autorización.
+El sistema será planteado inicialmente para un emprendimiento de pequeña escala.
 
-La propuesta inicial incluye:
+Como escenario de referencia se considera:
 
-* Autenticación mediante JWT.
-* Gestión de usuarios.
-* Roles de usuario.
-* Autorización de operaciones según el perfil.
-* Validación de datos.
+* Aproximadamente 15 productos o variantes.
+* Aproximadamente 10 clientes.
+* 1 administrador.
+* Volumen reducido de pedidos diarios.
+
+Estos valores representan el escenario inicial de prueba y permiten dimensionar la solución de acuerdo con el problema planteado.
+
+---
+
+## 🚀 Plan de desarrollo
+
+### Etapa 1 — Backend y base de datos
+
+* Configuración de Spring Boot.
+* Configuración de la base de datos.
+* Entidades.
+* Repositories.
+* API REST inicial.
+
+### Etapa 2 — Autenticación y seguridad
+
+* Registro.
+* Login.
+* JWT.
+* Roles.
 * Protección de endpoints.
-* Manejo centralizado de errores.
+* Validaciones.
 
-El objetivo es que las operaciones administrativas estén restringidas a usuarios autorizados.
+### Etapa 3 — Catálogo
 
----
-
-## 🗄️ Modelo de datos
-
-El sistema utilizará una base de datos relacional.
-
-Inicialmente se consideran como principales entidades del dominio:
-
-```text
-Usuario
-Producto
-Categoría
-Carrito
-Pedido
-Detalle de Pedido
-```
-
-El modelo entidad-relación, sus cardinalidades, restricciones y estructura definitiva serán definidos durante la segunda etapa del proyecto.
-
----
-
-## 📦 Módulos iniciales
-
-Como propuesta inicial, el sistema se organizará en los siguientes módulos:
-
-* **Autenticación y usuarios**
-* **Catálogo**
-* **Productos**
-* **Categorías**
-* **Carrito**
-* **Pedidos**
-* **Administración**
-* **Stock**
-
-El listado definitivo de módulos será revisado y validado durante la etapa correspondiente del Trabajo Final Integrador.
-
----
-
-## 🌐 API REST
-
-El backend expondrá una API REST para permitir la comunicación entre el frontend y los servicios del sistema.
-
-La API será responsable de gestionar las operaciones relacionadas con:
-
-* Usuarios.
-* Autenticación.
 * Productos.
 * Categorías.
-* Carrito.
-* Pedidos.
-* Administración.
-* Stock.
+* Búsqueda.
+* Filtros.
+* Detalle.
+* Gestión administrativa.
 
-La documentación detallada de los endpoints será incorporada durante el desarrollo.
+### Etapa 4 — Carrito y pedidos
+
+* Carrito.
+* Checkout.
+* Pago.
+* Verificación de stock.
+* Generación de pedidos.
+* Historial.
+* Estados.
+
+### Etapa 5 — Administración
+
+* Gestión de productos.
+* Gestión de categorías.
+* Stock.
+* Pedidos.
+* Cancelaciones.
+
+### Etapa 6 — Integración, pruebas y despliegue
+
+* Integración frontend/backend.
+* Pruebas funcionales.
+* Pruebas de seguridad.
+* Corrección de errores.
+* Despliegue online.
+* Documentación.
+* Video explicativo.
 
 ---
 
 ## ☁️ Despliegue
 
-El proyecto contempla el despliegue online de al menos uno de sus componentes principales, de acuerdo con los requisitos establecidos por la asignatura.
+El proyecto contempla el despliegue online de al menos uno de sus componentes principales, de acuerdo con los requisitos establecidos para el Trabajo Final Integrador.
 
-La estrategia y las plataformas de despliegue serán definidas durante las etapas de desarrollo e integración.
-
----
-
-## 📁 Estructura propuesta del repositorio
-
-El proyecto se desarrollará dentro de un único repositorio de GitHub.
-
-La estructura inicial propuesta es:
-
-```text
-sistema-ecommerce/
-│
-├── backend/
-│
-├── frontend/
-│
-├── database/
-│
-├── docs/
-│
-├── .gitignore
-└── README.md
-```
-
-La estructura podrá evolucionar durante el desarrollo de acuerdo con las necesidades del proyecto y las decisiones arquitectónicas adoptadas.
+La plataforma y estrategia de despliegue serán definidas durante el desarrollo.
 
 ---
 
@@ -251,53 +483,37 @@ La estructura podrá evolucionar durante el desarrollo de acuerdo con las necesi
 
 La documentación del proyecto se incorporará progresivamente dentro del repositorio.
 
-Se prevé incluir:
+Se prevé documentar:
 
-* Propuesta del proyecto.
+* Relevamiento y problemática.
+* Requisitos.
 * Arquitectura.
 * Modelo de datos.
 * Módulos.
 * Decisiones técnicas.
-* Documentación de API.
-* Instalación y configuración.
+* API REST.
+* Seguridad.
 * Pruebas.
+* Instalación y configuración.
 * Despliegue.
 * Informe final.
-* Material para presentación y defensa.
-
----
-
-## 🚀 Instalación y ejecución
-
-Las instrucciones de instalación, configuración y ejecución serán incorporadas y actualizadas a medida que se complete la implementación de los diferentes componentes.
-
-La aplicación estará compuesta inicialmente por:
-
-```text
-Frontend
-    ↓
-API REST
-    ↓
-Backend
-    ↓
-Base de datos
-```
 
 ---
 
 ## 👥 Equipo
 
-**Integrantes:**
-* Marcos Rios.
-* Christian Emmannuel Olivero.
+| Integrante                 | Rol        |
+| -------------------------- | ---------- |
+| Christian Emmanuel Olivero | Desarrollo |
+| Marcos Rios                | Desarrollo |
 
 ### Tutor
 
-**Nombre del tutor:** Oscar Londero
+**Oscar Londero**
 
 ---
 
-## 📅 Hoja de ruta
+## 📅 Hoja de ruta académica
 
 | Etapa | Entrega                                |   Fecha límite |
 | ----- | -------------------------------------- | -------------: |
@@ -307,25 +523,12 @@ Base de datos
 | 4     | Finalización del cursado               |     21/11/2026 |
 | 5     | Defensa oral                           | Mesa de examen |
 
-Las fechas corresponden al cronograma establecido en la consigna del Trabajo Final Integrador.
-
 ---
 
 ## 📌 Estado del proyecto
 
-**Estado:** 🟡 En planificación y desarrollo inicial.
+**Estado:** 🟡 Planificación y definición inicial.
 
-Actualmente el proyecto se encuentra en la etapa de definición de la propuesta, alcance, arquitectura y tecnologías.
+El proyecto se encuentra en la etapa de definición del problema, alcance, arquitectura y tecnologías.
 
-El contenido de este README será actualizado progresivamente a medida que avance el desarrollo y se establezcan las decisiones definitivas del proyecto.
-
----
-
-## 📄 Contexto académico
-
-Proyecto desarrollado en el marco del:
-
-**Trabajo Final Integrador**
-**Tecnicatura Universitaria en Programación**
-
-El proyecto se desarrolla bajo la supervisión de un docente tutor y siguiendo las etapas y requisitos establecidos por la asignatura.
+El README será actualizado progresivamente durante el desarrollo, incorporando las decisiones y componentes definitivos del sistema.
