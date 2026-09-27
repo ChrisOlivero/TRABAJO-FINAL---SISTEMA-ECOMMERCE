@@ -364,39 +364,31 @@ Esta separación busca favorecer la mantenibilidad, la cohesión y la separació
 
 ### Backend
 
-* Java
-* Spring Boot
-* Spring Web
-* Spring Data JPA
-* Hibernate
-* Spring Security
-* JWT
-* Bean Validation
-* DTOs
-* Manejo global de excepciones
+- Java
+- Spring Boot
+- Spring Web
+- Spring Data JPA
+- Hibernate
+- Spring Security
+- DTOs
+- Manejo global de excepciones
 
 ### Frontend
 
-* TypeScript
-* Vite
-* HTML
-* CSS
+- TypeScript
+- HTML
+- CSS
 
 ### Base de datos
 
-* Base de datos relacional SQL.
-* JPA / Hibernate.
-
-La tecnología específica de base de datos será definida durante la etapa de diseño.
+- Base de datos relacional SQL
+- JPA / Hibernate
 
 ### Herramientas
 
-* Git
-* GitHub
-* Postman o herramienta equivalente.
-* Plataforma de despliegue online.
-
----
+- Git
+- GitHub
+- Postman
 
 ## 📐 Dimensión inicial
 
@@ -481,6 +473,31 @@ La plataforma y estrategia de despliegue serán definidas durante el desarrollo.
 
 ## 📚 Documentación
 
+La documentación del proyecto se mantiene dentro de `docs/` y se actualiza progresivamente durante el desarrollo.
+
+### Diseño y segunda entrega
+
+* [Arquitectura](docs/arquitectura.md)
+* [Modelo de datos](docs/modelo-datos.md)
+* [Módulos](docs/modulos.md)
+* [Flujos](docs/flujos.md)
+* [Decisiones técnicas](docs/decisiones-tecnicas.md)
+* [Diagrama del modelo de datos](docs/diagramas/modelo-datos.svg)
+
+### Documentación prevista
+
+Se prevé documentar además:
+
+* Relevamiento y problemática.
+* Requisitos.
+* API REST.
+* Seguridad.
+* Pruebas.
+* Instalación y configuración.
+* Despliegue.
+* Informe final.
+
+
 La documentación del proyecto se incorporará progresivamente dentro del repositorio.
 
 Se prevé documentar:
@@ -527,8 +544,8 @@ Se prevé documentar:
 
 ## 📌 Estado del proyecto
 
-**Estado:** 🟡 Planificación y definición inicial.
+**Estado:** 🟡 Diseño y definición de arquitectura, modelo de datos y módulos.
 
-El proyecto se encuentra en la etapa de definición del problema, alcance, arquitectura y tecnologías.
+El proyecto se encuentra en la etapa correspondiente a la **segunda entrega**, con el alcance funcional definido y una propuesta de arquitectura, modelo de datos, módulos y flujos principales documentados.
 
-El README será actualizado progresivamente durante el desarrollo, incorporando las decisiones y componentes definitivos del sistema.
+La implementación continuará sobre esta base, manteniendo la documentación alineada con las decisiones técnicas que sean validadas durante el desarrollo.
