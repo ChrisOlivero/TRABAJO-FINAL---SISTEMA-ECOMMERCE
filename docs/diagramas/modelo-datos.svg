@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="920" viewBox="0 0 1500 920">
+  <style>
+    .box { fill:#ffffff; stroke:#333333; stroke-width:2; rx:8; }
+    .head { fill:#eeeeee; stroke:#333333; stroke-width:2; }
+    .txt { font-family:Arial, sans-serif; fill:#222; font-size:16px; }
+    .title { font-family:Arial, sans-serif; fill:#111; font-size:20px; font-weight:bold; }
+    .rel { font-family:Arial, sans-serif; fill:#444; font-size:15px; }
+    .line { stroke:#444; stroke-width:2.5; fill:none; }
+  </style>
+  <text x="750" y="35" text-anchor="middle" class="title">Modelo de datos — Sistema de E-commerce</text>
+
+  <rect x="80" y="100" width="310" height="270" class="box"/>
+  <rect x="80" y="100" width="310" height="45" class="head"/>
+  <text x="235" y="130" text-anchor="middle" class="title">USUARIO</text>
+  <text x="100" y="175" class="txt">PK id</text>
+  <text x="100" y="202" class="txt">nombre</text>
+  <text x="100" y="229" class="txt">apellido</text>
+  <text x="100" y="256" class="txt">email (UNIQUE)</text>
+  <text x="100" y="283" class="txt">passwordHash</text>
+  <text x="100" y="310" class="txt">celular</text>
+  <text x="100" y="337" class="txt">rol</text>
+
+  <rect x="520" y="100" width="310" height="270" class="box"/>
+  <rect x="520" y="100" width="310" height="45" class="head"/>
+  <text x="675" y="130" text-anchor="middle" class="title">CATEGORIA</text>
+  <text x="540" y="175" class="txt">PK id</text>
+  <text x="540" y="202" class="txt">nombre</text>
+  <text x="540" y="229" class="txt">descripcion</text>
+  <text x="540" y="256" class="txt">eliminado</text>
+  <text x="540" y="283" class="txt">createdAt</text>
+
+  <rect x="1010" y="80" width="400" height="360" class="box"/>
+  <rect x="1010" y="80" width="400" height="45" class="head"/>
+  <text x="1210" y="110" text-anchor="middle" class="title">PRODUCTO</text>
+  <text x="1030" y="155" class="txt">PK id</text>
+  <text x="1030" y="180" class="txt">FK categoria_id</text>
+  <text x="1030" y="205" class="txt">nombre</text>
+  <text x="1030" y="230" class="txt">descripcion</text>
+  <text x="1030" y="255" class="txt">marca / modelo</text>
+  <text x="1030" y="280" class="txt">almacenamiento / ram</text>
+  <text x="1030" y="305" class="txt">color / condicion</text>
+  <text x="1030" y="330" class="txt">precio</text>
+  <text x="1030" y="355" class="txt">stock</text>
+  <text x="1030" y="380" class="txt">imagen / disponible</text>
+  <text x="1030" y="405" class="txt">eliminado / createdAt</text>
+
+  <rect x="170" y="540" width="430" height="300" class="box"/>
+  <rect x="170" y="540" width="430" height="45" class="head"/>
+  <text x="385" y="570" text-anchor="middle" class="title">PEDIDO</text>
+  <text x="190" y="615" class="txt">PK id</text>
+  <text x="190" y="642" class="txt">FK usuario_id</text>
+  <text x="190" y="669" class="txt">fecha</text>
+  <text x="190" y="696" class="txt">estado / total</text>
+  <text x="190" y="723" class="txt">forma_pago / estado_pago</text>
+  <text x="190" y="750" class="txt">referencia_pago</text>
+  <text x="190" y="777" class="txt">tipo_entrega</text>
+  <text x="190" y="804" class="txt">direccion_entrega</text>
+
+  <rect x="820" y="540" width="430" height="250" class="box"/>
+  <rect x="820" y="540" width="430" height="45" class="head"/>
+  <text x="1035" y="570" text-anchor="middle" class="title">DETALLE_PEDIDO</text>
+  <text x="840" y="615" class="txt">PK id</text>
+  <text x="840" y="642" class="txt">FK pedido_id</text>
+  <text x="840" y="669" class="txt">FK producto_id</text>
+  <text x="840" y="696" class="txt">cantidad</text>
+  <text x="840" y="723" class="txt">precio_unitario</text>
+  <text x="840" y="750" class="txt">subtotal</text>
+  <text x="840" y="777" class="txt">createdAt</text>
+
+  <path d="M390 235 L520 235" class="line"/>
+  <text x="455" y="220" text-anchor="middle" class="rel">1 : N</text>
+  <text x="455" y="255" text-anchor="middle" class="rel">categoriza</text>
+
+  <path d="M1010 245 L830 245" class="line"/>
+  <text x="920" y="230" text-anchor="middle" class="rel">N : 1</text>
+
+  <path d="M235 370 L235 540" class="line"/>
+  <text x="255" y="465" class="rel">1 : N</text>
+  <text x="255" y="487" class="rel">realiza</text>
+
+  <path d="M600 680 L820 680" class="line"/>
+  <text x="710" y="665" text-anchor="middle" class="rel">1 : N</text>
+  <text x="710" y="705" text-anchor="middle" class="rel">contiene</text>
+
+  <path d="M1210 440 L1120 540" class="line"/>
+  <text x="1195" y="485" class="rel">1 : N</text>
+  <text x="1195" y="507" class="rel">aparece en</text>
+</svg>
